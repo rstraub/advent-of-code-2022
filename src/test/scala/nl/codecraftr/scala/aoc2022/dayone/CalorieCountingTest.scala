@@ -12,6 +12,14 @@ class CalorieCountingTest extends AnyFlatSpec with Matchers {
         CalorieCounter.maxCaloriesCarriedBySingleElf("1000") shouldBe 1000
     }
 
+    it should "return the calories given a single elf carrying multiple pieces of food" in {
+        CalorieCounter.maxCaloriesCarriedBySingleElf(
+            """
+              |1000
+              |2000
+              |""".stripMargin) shouldBe 3000
+    }
+
     // Final sample case
     ignore should "return the most calories a single elf carries" in {
         CalorieCounter.maxCaloriesCarriedBySingleElf(
