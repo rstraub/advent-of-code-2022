@@ -1,4 +1,4 @@
-package nl.codecraftr.scala.kata
+package nl.codecraftr.scala.aoc2022
 
 import org.scalatest.BeforeAndAfter
 import org.scalatest.matchers.should.Matchers
