@@ -8,7 +8,7 @@ lazy val root = project
   .configs(IntegrationTest)
   .in(file("."))
   .settings(
-    name := "Scala Code Kata",
+    name := "Advent of Code 2022 (Scala)",
     version := "0.1.0-SNAPSHOT",
     scalaVersion := projectScalaVersion,
     Defaults.itSettings,
