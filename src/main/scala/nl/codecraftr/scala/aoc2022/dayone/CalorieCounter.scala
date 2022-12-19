@@ -10,19 +10,26 @@ object CalorieCounter {
   def caloriesCarriedByTopElf(calorieSheet: String): Int = {
     if (calorieSheet.isBlank) return 0
 
-    val foodPerElf = calorieSheet.trim
-      .split(ELF_DIVIDER)
-      .map(_.split(FOOD_DIVIDER))
-      .map(_.map(_.toInt))
-
-    val caloriesPerElf = foodPerElf
-      .map(_.sum)
+    val caloriesPerElf = toCaloriesPerElf(calorieSheet)
 
     caloriesPerElf.max
   }
 
+  private def toCaloriesPerElf(calorieSheet: String) = {
+    calorieSheet.trim
+      .split(ELF_DIVIDER)
+      .map(_.split(FOOD_DIVIDER))
+      .map(_.map(_.toInt).sum)
+  }
+
   def caloriesCarriedByTopThreeElves(calorieSheet: String): Int = {
-    0
+    val caloriesPerElf = toCaloriesPerElf(calorieSheet)
+
+    caloriesPerElf
+        .sorted
+        .reverse
+        .take(3)
+        .sum
   }
 
   def calculateMaxCaloriesOfFile(): Int = {
