@@ -3,29 +3,26 @@ package nl.codecraftr.scala.aoc2022.dayone
 import nl.codecraftr.scala.aoc2022.ResourceParser
 
 object CalorieCounter {
-    private val ELF_DIVIDER = "\n\n"
+  private val ELF_DIVIDER = "\n\n"
 
-    private val FOOD_DIVIDER = "\n"
+  private val FOOD_DIVIDER = "\n"
 
-    def calculateMaxCalories(calorieSheet: String): Int = {
-        if (calorieSheet.isBlank) 0
-        else {
-            val foodPerElf = calorieSheet
-                .trim
-                .split(ELF_DIVIDER)
-                .map(_.split(FOOD_DIVIDER))
-                .map(_.map(_.toInt))
+  def calculateMaxCalories(calorieSheet: String): Int = {
+    if (calorieSheet.isBlank) return 0
 
-            val caloriesPerElf = foodPerElf
-                .map(_.sum)
+    val foodPerElf = calorieSheet.trim
+      .split(ELF_DIVIDER)
+      .map(_.split(FOOD_DIVIDER))
+      .map(_.map(_.toInt))
 
-            caloriesPerElf
-                .max
-        }
-    }
+    val caloriesPerElf = foodPerElf
+      .map(_.sum)
 
-    def calculateMaxCaloriesOfFile(): Int = {
-        val sheet = ResourceParser.resourceAsString("calories.txt")
-        calculateMaxCalories(sheet)
-    }
+    caloriesPerElf.max
+  }
+
+  def calculateMaxCaloriesOfFile(): Int = {
+    val sheet = ResourceParser.resourceAsString("calories.txt")
+    calculateMaxCalories(sheet)
+  }
 }

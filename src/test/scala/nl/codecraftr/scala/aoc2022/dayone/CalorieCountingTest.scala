@@ -4,34 +4,31 @@ import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
 class CalorieCountingTest extends AnyFlatSpec with Matchers {
-    "maxCaloriesCarriedBySingleElf" should "return 0 given no food is carried" in {
-        CalorieCounter.calculateMaxCalories("") shouldBe 0
-    }
+  "maxCaloriesCarriedBySingleElf" should "return 0 given no food is carried" in {
+    CalorieCounter.calculateMaxCalories("") shouldBe 0
+  }
 
-    it should "return the calories given a single elf carrying one piece of food" in {
-        CalorieCounter.calculateMaxCalories("1000") shouldBe 1000
-    }
+  it should "return the calories given a single elf carrying one piece of food" in {
+    CalorieCounter.calculateMaxCalories("1000") shouldBe 1000
+  }
 
-    it should "return the calories given a single elf carrying multiple pieces of food" in {
-        CalorieCounter.calculateMaxCalories(
-            """
+  it should "return the calories given a single elf carrying multiple pieces of food" in {
+    CalorieCounter.calculateMaxCalories("""
               |1000
               |2000
               |""".stripMargin) shouldBe 3000
-    }
+  }
 
-    it should "return the calories given a multiple elves carrying food" in {
-        CalorieCounter.calculateMaxCalories(
-            """
+  it should "return the calories given a multiple elves carrying food" in {
+    CalorieCounter.calculateMaxCalories("""
               |1000
               |
               |2000
               |""".stripMargin) shouldBe 2000
-    }
+  }
 
-    it should "return the most calories a single elf carries" in {
-        CalorieCounter.calculateMaxCalories(
-            """
+  it should "return the most calories a single elf carries" in {
+    CalorieCounter.calculateMaxCalories("""
               |1000
               |2000
               |3000
@@ -47,5 +44,5 @@ class CalorieCountingTest extends AnyFlatSpec with Matchers {
               |
               |10000
               |""".stripMargin) shouldBe 24000
-    }
+  }
 }
