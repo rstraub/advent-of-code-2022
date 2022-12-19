@@ -31,14 +31,15 @@ object CalorieCounter {
   }
 
   def maxCaloriesCarriedByTopElfInFile(): Int = {
-    val sheet = ResourceParser.resourceAsString("calories.txt")
-    caloriesCarriedByTopElf(sheet)
+    executeOnSheet(caloriesCarriedByTopElf)
   }
 
   def maxCaloriesCarriedByTopThreeElvesInFile(): Int = {
-    val sheet = ResourceParser.resourceAsString("calories.txt")
-    caloriesCarriedByTopThreeElves(sheet)
+    executeOnSheet(caloriesCarriedByTopThreeElves)
   }
 
-
+  private def executeOnSheet[A](fn: String => A): A = {
+    val sheet = ResourceParser.resourceAsString("calories.txt")
+    fn(sheet)
+  }
 }
