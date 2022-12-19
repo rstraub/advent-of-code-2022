@@ -7,7 +7,7 @@ object CalorieCounter {
 
   private val FOOD_DIVIDER = "\n"
 
-  def calculateMaxCalories(calorieSheet: String): Int = {
+  def caloriesCarriedByTopElf(calorieSheet: String): Int = {
     if (calorieSheet.isBlank) return 0
 
     val foodPerElf = calorieSheet.trim
@@ -21,8 +21,12 @@ object CalorieCounter {
     caloriesPerElf.max
   }
 
+  def caloriesCarriedByTopThreeElves(calorieSheet: String): Int = {
+    0
+  }
+
   def calculateMaxCaloriesOfFile(): Int = {
     val sheet = ResourceParser.resourceAsString("calories.txt")
-    calculateMaxCalories(sheet)
+    caloriesCarriedByTopElf(sheet)
   }
 }
