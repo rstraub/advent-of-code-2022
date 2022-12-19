@@ -25,15 +25,20 @@ object CalorieCounter {
   def caloriesCarriedByTopThreeElves(calorieSheet: String): Int = {
     val caloriesPerElf = toCaloriesPerElf(calorieSheet)
 
-    caloriesPerElf
-        .sorted
-        .reverse
-        .take(3)
-        .sum
+    caloriesPerElf.sorted.reverse
+      .take(3)
+      .sum
   }
 
-  def calculateMaxCaloriesOfFile(): Int = {
+  def maxCaloriesCarriedByTopElfInFile(): Int = {
     val sheet = ResourceParser.resourceAsString("calories.txt")
     caloriesCarriedByTopElf(sheet)
   }
+
+  def maxCaloriesCarriedByTopThreeElvesInFile(): Int = {
+    val sheet = ResourceParser.resourceAsString("calories.txt")
+    caloriesCarriedByTopThreeElves(sheet)
+  }
+
+
 }
