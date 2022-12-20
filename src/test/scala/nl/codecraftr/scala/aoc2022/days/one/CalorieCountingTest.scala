@@ -1,4 +1,4 @@
-package nl.codecraftr.scala.aoc2022.dayone
+package nl.codecraftr.scala.aoc2022.days.one
 
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers

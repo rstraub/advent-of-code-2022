@@ -1,4 +1,4 @@
-package nl.codecraftr.scala.aoc2022.dayone
+package nl.codecraftr.scala.aoc2022.days.one
 
 import nl.codecraftr.scala.aoc2022.ResourceParser
 
