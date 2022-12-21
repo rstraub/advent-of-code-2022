@@ -21,7 +21,7 @@ class RockPaperScissorScorerTest
     }
   }
 
-  ignore should "return score of shape plus three given a draw" in {
+  it should "return score of shape plus three given a draw" in {
       val draws = Table(
           ("round", "score"),
           ("A X", 1 + 3),

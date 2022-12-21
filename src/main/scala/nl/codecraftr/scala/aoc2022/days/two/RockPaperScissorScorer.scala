@@ -2,30 +2,46 @@ package nl.codecraftr.scala.aoc2022.days.two
 
 object RockPaperScissorScorer {
   def score(strategySheet: String): Int = {
-    val round = parse(strategySheet)
-    round.player.score
+    val round = decode(strategySheet)
+    round.score()
   }
 
-  private def parse(strategySheet: String): Round = {
-    if (strategySheet.endsWith("X")) Round(Rock, Rock)
-    else if (strategySheet.endsWith("Y")) Round(Rock, Paper)
-    else Round(Rock, Scissors)
+  private def decode(strategySheet: String): Round = {
+    val shapes: Seq[Shape] = strategySheet
+      .split(" ")
+      .toSeq
+      .map(toShape)
+
+    Round(shapes.head, shapes.last)
+  }
+
+  private def toShape(encodedShape: String): Shape = {
+    encodedShape match {
+      case "A" | "X" => Rock
+      case "B" | "Y" => Paper
+      case "C" | "Z" => Scissors
+    }
   }
 }
 
-private case class Round(opponent: Shape, player: Shape)
+private case class Round(opponent: Shape, player: Shape) {
+  def score(): Int = {
+    if (opponent == player) 3 + player.score
+    else player.score
+  }
+}
 
 private sealed trait Shape {
-    val score: Int
+  val score: Int
 }
 private case object Rock extends Shape {
-    override val score = 1
+  override val score = 1
 }
 
 private case object Paper extends Shape {
-    override val score = 2
+  override val score = 2
 }
 
 private case object Scissors extends Shape {
-    override val score = 3
+  override val score = 3
 }
