@@ -20,4 +20,17 @@ class RockPaperScissorScorerTest
       RockPaperScissorScorer.score(round) shouldBe score
     }
   }
+
+  it should "return score of shape plus three given a draw" in {
+      val draws = Table(
+          ("round", "score"),
+          ("A X", 1 + 3),
+          ("B Y", 2 + 3),
+          ("C Z", 3 + 3)
+      )
+
+      forAll(draws) { (round: String, score: Int) =>
+          RockPaperScissorScorer.score(round) shouldBe score
+      }
+  }
 }
