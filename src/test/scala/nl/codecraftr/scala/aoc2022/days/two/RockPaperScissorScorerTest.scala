@@ -55,4 +55,14 @@ class RockPaperScissorScorerTest
             |""".stripMargin
       RockPaperScissorScorer.score(sheet) shouldBe 2
   }
+
+  it should "return score of sample tournament" in {
+    val sheet = """
+        |A Y
+        |B X
+        |C Z
+        |""".stripMargin
+
+    RockPaperScissorScorer.score(sheet) shouldBe 15
+  }
 }
