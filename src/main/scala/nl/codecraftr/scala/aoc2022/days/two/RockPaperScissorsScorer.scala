@@ -1,10 +1,6 @@
 package nl.codecraftr.scala.aoc2022.days.two
 
-import nl.codecraftr.scala.aoc2022.days.two.Helpers.Tournament
-
 object RockPaperScissorsScorer {
-  import Helpers._
-
   def score(encodedSheet: String): Int = {
     val tournament = SheetDecoder.decodeSheet(encodedSheet)
     tournament.score
@@ -13,10 +9,11 @@ object RockPaperScissorsScorer {
 
 private object SheetDecoder {
   def decodeSheet(strategySheet: String): Tournament = {
-    strategySheet.trim
+    val rounds = strategySheet.trim
       .split("\n")
       .map(decodeRound)
       .toSeq
+    Tournament(rounds)
   }
 
   private def decodeRound(encodedRound: String) = {
@@ -34,18 +31,15 @@ private object SheetDecoder {
       case "C" | "Z" => Scissors
     }
   }
-}
 
-private object Helpers {
-  type Tournament = Seq[Round]
-
-  implicit class TournamentOps(tournament: Tournament) extends Scorable {
-    override def score: Int = tournament.map(_.score).sum
-  }
 }
 
 private trait Scorable {
   def score: Int
+}
+
+private case class Tournament(rounds: Seq[Round]) extends Scorable {
+  override def score: Int = rounds.map(_.score).sum
 }
 
 private case class Round(opponent: Shape, player: Shape) extends Scorable {
