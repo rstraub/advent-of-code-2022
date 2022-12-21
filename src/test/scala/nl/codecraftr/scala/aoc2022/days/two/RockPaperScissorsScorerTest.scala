@@ -11,9 +11,9 @@ class RockPaperScissorsScorerTest
   "score" should "return score of shape given a loss" in {
     val losses = Table(
       ("round", "score"),
+      ("A X", 3),
       ("B X", 1),
-      ("C Y", 2),
-      ("A Z", 3)
+      ("C X", 2)
     )
 
     forAll(losses) { (round: String, score: Int) =>
@@ -24,9 +24,9 @@ class RockPaperScissorsScorerTest
   it should "return score of shape plus three given a draw" in {
     val draws = Table(
       ("round", "score"),
-      ("A X", 1 + 3),
+      ("A Y", 1 + 3),
       ("B Y", 2 + 3),
-      ("C Z", 3 + 3)
+      ("C Y", 3 + 3)
     )
 
     forAll(draws) { (round: String, score: Int) =>
@@ -37,23 +37,14 @@ class RockPaperScissorsScorerTest
   it should "return score of shape plus six given a win" in {
     val wins = Table(
       ("round", "score"),
-      ("C X", 1 + 6),
-      ("A Y", 2 + 6),
-      ("B Z", 3 + 6)
+      ("A Z", 2 + 6),
+      ("B Z", 3 + 6),
+      ("C Z", 1 + 6)
     )
 
     forAll(wins) { (round: String, score: Int) =>
       RockPaperScissorsScorer.score(round) shouldBe score
     }
-  }
-
-  it should "return score of multiple rounds" in {
-      val sheet =
-          """
-            |B X
-            |B X
-            |""".stripMargin
-      RockPaperScissorsScorer.score(sheet) shouldBe 2
   }
 
   it should "return score of sample tournament" in {
@@ -63,6 +54,6 @@ class RockPaperScissorsScorerTest
         |C Z
         |""".stripMargin
 
-    RockPaperScissorsScorer.score(sheet) shouldBe 15
+    RockPaperScissorsScorer.score(sheet) shouldBe 12
   }
 }
