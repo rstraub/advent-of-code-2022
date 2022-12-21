@@ -3,7 +3,7 @@ package nl.codecraftr.scala.aoc2022.days.two
 object RockPaperScissorScorer {
   def score(strategySheet: String): Int = {
     val round = decode(strategySheet)
-    round.score()
+    round.score
   }
 
   private def decode(strategySheet: String): Round = {
@@ -24,16 +24,29 @@ object RockPaperScissorScorer {
   }
 }
 
-private case class Round(opponent: Shape, player: Shape) {
-  def score(): Int = {
-    if (opponent == player) 3 + player.score
-    else player.score
+private trait Scorable {
+  def score: Int
+}
+
+private case class Round(opponent: Shape, player: Shape) extends Scorable {
+  private sealed trait Result extends Scorable
+  private case object Loss extends Result {
+    override val score = 0
+  }
+
+  private case object Draw extends Result {
+    override val score = 3
+  }
+
+  override def score: Int = {
+    val result = if (opponent == player) Draw
+    else Loss
+
+    result.score + player.score
   }
 }
 
-private sealed trait Shape {
-  val score: Int
-}
+private sealed trait Shape extends Scorable
 private case object Rock extends Shape {
   override val score = 1
 }
