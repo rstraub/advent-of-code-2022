@@ -47,8 +47,7 @@ class CalorieCountingTest extends AnyFlatSpec with Matchers {
   }
 
   "caloriesCarriedByTopThreeElves" should "return sum of calories carried by three top elves" in {
-      CalorieCounter.caloriesCarriedByTopThreeElves(
-          """
+    CalorieCounter.caloriesCarriedByTopThreeElves("""
             |1000
             |2000
             |3000
@@ -64,7 +63,7 @@ class CalorieCountingTest extends AnyFlatSpec with Matchers {
             |
             |10000
             |""".stripMargin) shouldBe (7000 + 8000 + 9000) +
-          (5000 + 6000) +
-          10000
+      (5000 + 6000) +
+      10000
   }
 }
