@@ -39,7 +39,7 @@ object CalorieCounter {
   }
 
   private def executeOnSheet[A](fn: String => A): A = {
-    val sheet = ResourceParser.resourceAsString("calories.txt")
+    val sheet = ResourceParser.resourceAsString("dayone.txt")
     fn(sheet)
   }
 }
