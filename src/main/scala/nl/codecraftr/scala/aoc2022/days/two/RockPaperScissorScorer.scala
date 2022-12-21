@@ -33,28 +33,38 @@ private case class Round(opponent: Shape, player: Shape) extends Scorable {
   private case object Loss extends Result {
     override val score = 0
   }
-
   private case object Draw extends Result {
     override val score = 3
   }
+  private case object Win extends Result {
+    override val score = 6
+  }
 
   override def score: Int = {
-    val result = if (opponent == player) Draw
-    else Loss
+    val result =
+      if (player.beats == opponent) Win
+      else if (opponent == player) Draw
+      else Loss
 
     result.score + player.score
   }
 }
 
-private sealed trait Shape extends Scorable
+private sealed trait Shape extends Scorable {
+  def beats: Shape
+}
+
 private case object Rock extends Shape {
-  override val score = 1
+  override val score: Int = 1
+  override val beats: Shape = Scissors
 }
 
 private case object Paper extends Shape {
-  override val score = 2
+  override val score: Int = 2
+  override val beats: Shape = Rock
 }
 
 private case object Scissors extends Shape {
-  override val score = 3
+  override val score: Int = 3
+  override val beats: Shape = Paper
 }

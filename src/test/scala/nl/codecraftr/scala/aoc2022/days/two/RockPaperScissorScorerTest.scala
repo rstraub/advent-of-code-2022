@@ -37,9 +37,9 @@ class RockPaperScissorScorerTest
   it should "return score of shape plus six given a win" in {
     val wins = Table(
       ("round", "score"),
-      ("A Y", 1 + 6),
-      ("B Z", 2 + 6),
-      ("C X", 3 + 6)
+      ("C X", 1 + 6),
+      ("A Y", 2 + 6),
+      ("B Z", 3 + 6)
     )
 
     forAll(wins) { (round: String, score: Int) =>
