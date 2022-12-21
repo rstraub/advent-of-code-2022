@@ -9,10 +9,15 @@ class RockPaperScissorScorerTest
     with Matchers
     with TableDrivenPropertyChecks {
   private val losses = Table(
-    "B X",
-    "C Y",
-    "A Z"
+      ("round", "score"),
+      ("B X", 1),
+      ("C Y", 2),
+      ("A Z", 3)
   )
 
-  "score" should "return score of shape given a loss" in {}
+  "score" should "return score of shape given a loss" in {
+    forAll(losses) { (round: String, score: Int) =>
+        RockPaperScissorScorer.score(round) shouldBe score
+    }
+  }
 }
