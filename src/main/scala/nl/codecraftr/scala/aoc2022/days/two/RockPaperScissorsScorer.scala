@@ -1,6 +1,6 @@
 package nl.codecraftr.scala.aoc2022.days.two
 
-object RockPaperScissorScorer {
+object RockPaperScissorsScorer {
   def score(encodedSheet: String): Int = {
     val tournament = SheetDecoder.decodeSheet(encodedSheet)
     tournament.map(_.score).sum

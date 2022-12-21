@@ -4,7 +4,7 @@ import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class RockPaperScissorScorerTest
+class RockPaperScissorsScorerTest
     extends AnyFlatSpec
     with Matchers
     with TableDrivenPropertyChecks {
@@ -17,7 +17,7 @@ class RockPaperScissorScorerTest
     )
 
     forAll(losses) { (round: String, score: Int) =>
-      RockPaperScissorScorer.score(round) shouldBe score
+      RockPaperScissorsScorer.score(round) shouldBe score
     }
   }
 
@@ -30,7 +30,7 @@ class RockPaperScissorScorerTest
     )
 
     forAll(draws) { (round: String, score: Int) =>
-      RockPaperScissorScorer.score(round) shouldBe score
+      RockPaperScissorsScorer.score(round) shouldBe score
     }
   }
 
@@ -43,7 +43,7 @@ class RockPaperScissorScorerTest
     )
 
     forAll(wins) { (round: String, score: Int) =>
-      RockPaperScissorScorer.score(round) shouldBe score
+      RockPaperScissorsScorer.score(round) shouldBe score
     }
   }
 
@@ -53,7 +53,7 @@ class RockPaperScissorScorerTest
             |B X
             |B X
             |""".stripMargin
-      RockPaperScissorScorer.score(sheet) shouldBe 2
+      RockPaperScissorsScorer.score(sheet) shouldBe 2
   }
 
   it should "return score of sample tournament" in {
@@ -63,6 +63,6 @@ class RockPaperScissorScorerTest
         |C Z
         |""".stripMargin
 
-    RockPaperScissorScorer.score(sheet) shouldBe 15
+    RockPaperScissorsScorer.score(sheet) shouldBe 15
   }
 }
