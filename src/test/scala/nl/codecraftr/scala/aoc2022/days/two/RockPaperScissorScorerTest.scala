@@ -46,4 +46,13 @@ class RockPaperScissorScorerTest
       RockPaperScissorScorer.score(round) shouldBe score
     }
   }
+
+  it should "return score of multiple rounds" in {
+      val sheet =
+          """
+            |B X
+            |B X
+            |""".stripMargin
+      RockPaperScissorScorer.score(sheet) shouldBe 2
+  }
 }

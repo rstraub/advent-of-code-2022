@@ -1,15 +1,21 @@
 package nl.codecraftr.scala.aoc2022.days.two
 
 object RockPaperScissorScorer {
-  def score(strategySheet: String): Int = {
-    val round = decode(strategySheet)
-    round.score
+  def score(encodedSheet: String): Int = {
+    val round = decodeSheet(encodedSheet)
+    round.map(_.score).sum
   }
 
-  private def decode(strategySheet: String): Round = {
-    val shapes: Seq[Shape] = strategySheet
-      .split(" ")
+  private def decodeSheet(strategySheet: String) = {
+    strategySheet.trim
+      .split("\n")
+      .map(decodeRound)
       .toSeq
+  }
+
+  private def decodeRound(encodedRound: String) = {
+    val shapes = encodedRound
+      .split(" ")
       .map(toShape)
 
     Round(shapes.head, shapes.last)
